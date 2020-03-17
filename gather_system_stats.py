@@ -3,11 +3,13 @@ from pprint import pprint
 import time
 import urllib3
 import os
+from dotenv import load_dotenv
 
 import isi_sdk_8_2_1
 from isi_sdk_8_2_1.rest import ApiException
 
 urllib3.disable_warnings()
+load_dotenv()
 
 # configure cluster connection: basicAuth
 configuration = isi_sdk_8_2_1.Configuration()
@@ -38,18 +40,22 @@ try:
 except ApiException as e:
     print("Exception when calling ProtocolsApi->list_nfs_exports: %s\n" % e)
 
-#pprint(api_response)
-#print(dir(api_response))
-#print(api_response.system)
 def disp_var(text=None, var=None):
     print(f'{text}: {var}')
 
-disp_var("cpu", api_response.system[0].cpu)
-disp_var("cpu", api_response)
+#disp_var("cpu", api_response.system[0].cpu)
+#disp_var("cpu", api_response)
 # disp_var("cpu", api_response.system[1].cpu)
 # disp_var("cpu", api_response.system[2].cpu)
 # disp_var("cpu", api_response.system[3].cpu)
 # disp_var("http", api_response.system[0].http)
 # disp_var("ftp", api_response.system[0].ftp)
 # disp_var("total", api_response.system[0].total)
-disp_var("time", api_response.system[0].time)
+#disp_var("time", api_response.system[0].time)
+
+for measurement in api_response.system:
+    measure = "cpu"
+    tags = f"nodes={measurement.node}"
+    fields = f"cpu={measurement.cpu}"
+    print(f"{measure},{tags} {fields}")
+
