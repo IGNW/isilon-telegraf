@@ -1,0 +1,3 @@
+urllib3
+python-dotenv
+isi_sdk_8_2_1
