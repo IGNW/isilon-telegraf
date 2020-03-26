@@ -1,3 +1,5 @@
 urllib3
 python-dotenv
-isi_sdk_8_2_1
+isi_sdk_8_2_1   # Needed for the IGNW Lab
+isi_sdk_8_2_2   # Current in production
+pyyaml

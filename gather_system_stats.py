@@ -1,19 +1,25 @@
 #! /usr/bin/env python3
 import urllib3
 import os
-from dotenv import load_dotenv
 
 import isi_sdk_8_2_1
 from isi_sdk_8_2_1.rest import ApiException
+from settings import Settings
 
 urllib3.disable_warnings()
-load_dotenv()
 
-# configure cluster connection: basicAuth
+config = Settings()
+
+print(config.hostname)
+print(config.username)
+print(config.password)
+
+url = f"https://{config.hostname}:{config.port}"
+print(url)
 configuration = isi_sdk_8_2_1.Configuration()
-configuration.host = 'https://10.50.4.53:8080'
-configuration.username = os.environ['username']
-configuration.password = os.environ['password']
+configuration.host = url 
+configuration.username = config.username 
+configuration.password = config.password 
 configuration.verify_ssl = False
 
 # create an instance of the API class
