@@ -16,10 +16,11 @@ class Settings():
         else:
             self.settings_file = Path(settings_file)
 
-        # MSO Server Settings and Credentials
+        # Isilon Server Settings and Credentials
         self.hostname = "" 
         self.username = ""
         self.password = ""
+        self.verify_ssl = True
 
 
         # Override the defaults above

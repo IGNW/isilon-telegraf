@@ -10,19 +10,15 @@ urllib3.disable_warnings()
 
 config = Settings()
 
-print(config.hostname)
-print(config.username)
-print(config.password)
-
+# Configuration Settings
 url = f"https://{config.hostname}:{config.port}"
-print(url)
 configuration = isi_sdk_8_2_1.Configuration()
 configuration.host = url 
 configuration.username = config.username 
 configuration.password = config.password 
-configuration.verify_ssl = False
+configuration.verify_ssl = config.verify_ssl
 
-# create an instance of the API class
+# Create an instance of the API class
 api_client = isi_sdk_8_2_1.ApiClient(configuration)
 statistics_instance = isi_sdk_8_2_1.StatisticsApi(api_client)
 
