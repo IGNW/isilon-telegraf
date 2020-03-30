@@ -1,27 +1,26 @@
 #! /usr/bin/env python3
 import urllib3
 import os
-from dotenv import load_dotenv
-from pprint import pprint
 
 import isi_sdk_8_2_1
 from isi_sdk_8_2_1.rest import ApiException
+from settings import Settings
 
 urllib3.disable_warnings()
-load_dotenv()
+
+config = Settings()
 
 # configure cluster connection: basicAuth
+url = f"https://{config.hostname}:{config.port}"
 configuration = isi_sdk_8_2_1.Configuration()
-configuration.host = 'https://10.50.4.53:8080'
-configuration.username = os.environ['username']
-configuration.password = os.environ['password']
-configuration.verify_ssl = False
+configuration.host = url 
+configuration.username = config.username 
+configuration.password = config.password 
+configuration.verify_ssl = config.verify_ssl
 
 # create an instance of the API class
 api_client = isi_sdk_8_2_1.ApiClient(configuration)
 storage_instance = isi_sdk_8_2_1.StoragepoolApi(api_client)
-stats_instance = isi_sdk_8_2_1.StatisticsApi(api_client)
-protocols_instance = isi_sdk_8_2_1.ProtocolsApi(api_client)
 
 try:
     api_response = storage_instance.get_storagepool_nodepool('v200_100gb_6gb')
