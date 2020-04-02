@@ -2,3 +2,5 @@ urllib3
 isi_sdk_8_2_1   # Needed for the IGNW Lab
 isi_sdk_8_2_2   # Current in production
 PyYAML
+click
+pytest
