@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 import urllib3
-import os
 
 import isi_sdk_8_2_1
 from isi_sdk_8_2_1.rest import ApiException
@@ -13,9 +12,9 @@ config = Settings()
 # configure cluster connection: basicAuth
 url = f"https://{config.hostname}:{config.port}"
 configuration = isi_sdk_8_2_1.Configuration()
-configuration.host = url 
-configuration.username = config.username 
-configuration.password = config.password 
+configuration.host = url
+configuration.username = config.username
+configuration.password = config.password
 configuration.verify_ssl = config.verify_ssl
 
 # create an instance of the API class

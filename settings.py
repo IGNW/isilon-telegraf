@@ -17,11 +17,10 @@ class Settings():
             self.settings_file = Path(settings_file)
 
         # Isilon Server Settings and Credentials
-        self.hostname = "" 
+        self.hostname = ""
         self.username = ""
         self.password = ""
         self.verify_ssl = True
-
 
         # Override the defaults above
         self.load_settings_file()
@@ -43,4 +42,6 @@ class Settings():
             else:
                 raise
         except ScannerError as e:
-            raise SettingsError(f"You have a malformed 'settings.yml' file.  Please fix this.  The error can be found in the following message: {e}")
+            raise SettingsError("You have a malformed 'settings.yml' file.  "
+                                "Please fix this.  The error can be found in "
+                                f"the following message: {e}")

@@ -1,5 +1,5 @@
 #! /usr/bin/env python3
-from isilon import Isilon
+from isilon import Isilon, ApiException
 
 # The Isilon class sets up the connection to the Isilon and provides an object
 api = Isilon(api_class="StatisticsApi")

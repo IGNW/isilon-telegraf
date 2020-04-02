@@ -1,8 +1,7 @@
 #! /usr/bin/env python3
 import urllib3
 import os
-from dotenv import load_dotenv
-from pprint import pprint
+# TODO - fix this to use the settings file
 
 # The main repo for the library is here:
 # https://github.com/Isilon/isilon_sdk
@@ -19,9 +18,6 @@ urllib3.disable_warnings()
 # This is how the settings in the .env file are getting loaded
 # Specifically this is where the username and password
 # are getting loaded at run time into environmental variables
-#
-# https://pypi.org/project/python-dotenv/
-load_dotenv()
 
 # configure cluster connection: basicAuth
 configuration = isi_sdk_8_2_1.Configuration()
@@ -39,7 +35,7 @@ api_client = isi_sdk_8_2_1.ApiClient(configuration)
 
 # https://github.com/Isilon/isilon_sdk_python
 # On the link above, clicking on any of the methods like
-# get_summary_drive at 
+# get_summary_drive at
 # https://github.com/Isilon/isilon_sdk_python/blob/v8.2.1/docs/StatisticsApi.md#get_summary_drive
 # This will give you a code snipit of the above code
 # and a working example
@@ -61,5 +57,3 @@ for node in api_response.nodepools:
     tags = f"name={node.name},tier={node.tier}"
     fields = f"percent_used={node.usage.pct_used}"
     print(f"{measure},{tags} {fields}")
-
-

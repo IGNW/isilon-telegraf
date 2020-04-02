@@ -1,30 +1,28 @@
 import urllib3
-import os
 
 import isi_sdk_8_2_1
 from isi_sdk_8_2_1.rest import ApiException
 from settings import Settings
+
 
 class Isilon:
     def __init__(self, api_class=""):
         config = Settings()
         urllib3.disable_warnings()
 
-
         # Configuration Settings
         url = f"https://{config.hostname}:{config.port}"
         configuration = isi_sdk_8_2_1.Configuration()
-        configuration.host = url 
-        configuration.username = config.username 
-        configuration.password = config.password 
+        configuration.host = url
+        configuration.username = config.username
+        configuration.password = config.password
         configuration.verify_ssl = config.verify_ssl
 
         # Create an instance of the API class
         api_client = isi_sdk_8_2_1.ApiClient(configuration)
 
-
         if api_class == "AntivirusApi":
-            raise Exception("Not implemented in this class")
+            raise ApiException("Not implemented in this class")
 
         elif api_class == "AuditApi":
             raise Exception("Not implemented in this class")
@@ -193,4 +191,3 @@ class Isilon:
 
         else:
             raise Exception("Not implemented in this class")
-        

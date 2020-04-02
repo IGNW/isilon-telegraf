@@ -1,3 +1,8 @@
+# Repo Status
+Isilon API Status
+
+![Isilon API Testing](https://github.com/IGNW/isilon-telegraf/workflows/Isilon%20API%20Testing/badge.svg)
+
 # isilon-telegraf
 Repo for testing out Isolon-Telegraf integration using the Isolon SDK
 
