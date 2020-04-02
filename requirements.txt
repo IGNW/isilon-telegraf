@@ -4,3 +4,4 @@ isi_sdk_8_2_2   # Current in production
 PyYAML
 click
 pytest
+pytest-cov
