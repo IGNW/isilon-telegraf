@@ -5,6 +5,7 @@ import pytest
 def test_settings_default():
     s = Settings()
     assert isinstance(s, Settings)
+    assert hasattr(s, "hostname")
 
 
 def test_settings_with_empty_file(tmp_path):
@@ -16,6 +17,8 @@ def test_settings_with_empty_file(tmp_path):
     s = Settings(p)
 
     assert isinstance(s, Settings)
+    assert s.hostname == ""
+    assert not hasattr(s, "missing_property")
 
 
 def test_settings_with_malformed_settings_file(tmp_path):
@@ -44,3 +47,22 @@ def test_settings_with_string_in_yaml(tmp_path):
         Settings(settings_file=p)
 
     assert str(e.value) == "'str' object has no attribute 'items'"
+
+
+def test_settings_with_valid_yaml(tmp_path):
+    test_string = ('---\n'
+                   'hostname: test_host\n'
+                   'username: "Some User"\n'
+                   'undefined_test_param: some_test_value\n'
+                   'test param with spaces: "some value with spaces"')
+
+    d = tmp_path / "settings"
+    d.mkdir()
+    p = d / "settings.yml"
+    p.write_text(test_string)
+
+    s = Settings(settings_file=p)
+
+    assert s.hostname == "test_host"
+    assert getattr(s, 'test param with spaces') == "some value with spaces"
+    assert s.undefined_test_param == "some_test_value"
