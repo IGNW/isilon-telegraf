@@ -20,6 +20,7 @@ class Settings():
         self.hostname = ""
         self.username = ""
         self.password = ""
+        self.port = ""
         self.verify_ssl = True
 
         # Override the defaults above

@@ -129,6 +129,6 @@ dmypy.json
 .pyre/
 
 # Settings file
-settings.yml
+*settings.yml
 
 Pipfile*
