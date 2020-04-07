@@ -17,6 +17,14 @@ class IsilonInvalidClassException(Exception):
     pass
 
 
+class IsilonInvalidArgumentException(Exception):
+    pass
+
+
+class IsilonInvalidMethodException(Exception):
+    pass
+
+
 class Isilon:
     def __init__(self, api_class=None, settings_file=None):
         self.config = Settings(settings_file)
@@ -47,15 +55,25 @@ class Isilon:
 
     def call_method(self, method=None, **kwargs):
         # This allows the calling of Class Methods using a variable
-        to_call = getattr(self.api_client, method)
+        try:
+            to_call = getattr(self.api_client, method)
+        except AttributeError:
+            raise IsilonInvalidMethodException(f"The method `{method}` does not exist on the Class Object.")
+        except Exception:
+            print("An unknown error occured when trying to access the Instance Method")
+            raise
 
         try:
+            # Calling the function and passing in all the args
             output = to_call(**kwargs)
         except MaxRetryError:
             raise IsilonConnectionException(f"Unable to connect to the the host {self.config.hostname}")
         except LocationValueError:
-            raise IsilonNoHostException(f"No host is defined in the settings file")
+            raise IsilonNoHostException("No host is defined in the settings file")
+        except TypeError:
+            raise IsilonInvalidArgumentException(f"One of the arguements you passed in is invalid.  Arguments are: {kwargs}")
         except Exception:
+            print("An unknown error occured when trying to call the method")
             raise
 
         return output
