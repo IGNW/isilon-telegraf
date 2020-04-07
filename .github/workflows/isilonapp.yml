@@ -35,4 +35,4 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
-        pytest --cov=. --cov-report=term-missing:skip-covered --cov-fail-under=8
+        pytest --cov=. --cov-report=term-missing:skip-covered --cov-fail-under=50
