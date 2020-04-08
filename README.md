@@ -24,3 +24,32 @@ After having a list of stats, would be nice to easily look at the contents.  Use
 
 Just add the a Statistics Key name after the end of the file and it will output the api data to the command line.  This tool is for helping to explore the Statistics API while developing a program.
 
+
+# Adding an API/Status Only User
+This is a 2 part process.
+
+## Create User
+- Log into the Isilon as an admin.
+- Navigate to Access -> Membership and Roles -> Users
+- Select `LOCAL: System`from the Providers Drop Down
+- Click `Create user` on the right of the window
+- Fill out with the following values in the pop up window
+    - User name: ro_api_user
+    - Password: ***desired_password***
+    - Full Name: RO API User
+    - Enable the account: ***checked***
+- Click `Create user` at the bottom of the window
+
+## Add to correct role
+- Click on the `Roles` tab
+- Scroll down to `StatisticsAdmin` and click the `View/Edit` button
+- In the pop up window click `Edit role`
+- Click `Add a member to this role`
+- Select `LOCAL:System` from the Provider drop down
+- Select the `Search` button
+- Select `ro_api_user` from the Search Results section
+- Click `Select` to add the user to the role
+- Click `Save changes`
+- Click `Close`
+
+Now test and verify your new user can pull Stats from the API but cannot log into the GUI.
