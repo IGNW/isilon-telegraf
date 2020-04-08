@@ -12,7 +12,8 @@ class SettingsError(Exception):
 class Settings():
     def __init__(self, settings_file=None):
         if settings_file is None:
-            self.settings_file = Path("./settings.yml")
+            script_dir = Path(__file__).parents[0]
+            self.settings_file = script_dir / "settings.yml"
         else:
             self.settings_file = Path(settings_file)
 
