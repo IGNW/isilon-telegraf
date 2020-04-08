@@ -5,7 +5,8 @@ import pytest
 def test_settings_default():
     s = Settings()
     assert isinstance(s, Settings)
-    assert hasattr(s, "hostname")
+    assert hasattr(s, "name")
+    assert hasattr(s, "ip")
 
 
 def test_settings_with_empty_file(tmp_path):
@@ -17,7 +18,8 @@ def test_settings_with_empty_file(tmp_path):
     s = Settings(p)
 
     assert isinstance(s, Settings)
-    assert s.hostname == ""
+    assert s.ip == ""
+    assert s.name == ""
     assert not hasattr(s, "missing_property")
 
 

@@ -31,7 +31,7 @@ class Isilon:
         urllib3.disable_warnings()
 
         # Configuration Settings
-        url = f"https://{self.config.hostname}:{self.config.port}"
+        url = f"https://{self.config.ip}:{self.config.port}"
         configuration = isi_sdk.Configuration()
         configuration.host = url
         configuration.username = self.config.username
@@ -67,7 +67,7 @@ class Isilon:
             # Calling the function and passing in all the args
             output = to_call(**kwargs)
         except MaxRetryError:
-            raise IsilonConnectionException(f"Unable to connect to the the host {self.config.hostname}")
+            raise IsilonConnectionException(f"Unable to connect to the the host {self.config.ip}")
         except LocationValueError:
             raise IsilonNoHostException("No host is defined in the settings file")
         except TypeError:

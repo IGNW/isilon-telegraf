@@ -11,7 +11,7 @@ import pytest
 
 @pytest.fixture
 def bad_settings_file(tmp_path):
-    text = ('hostname: "10.20.30.40"\n'
+    text = ('ip: "10.20.30.40"\n'
             'port: "8080"\n'
             'username: "admin"\n'
             'password: "bad_password"\n'

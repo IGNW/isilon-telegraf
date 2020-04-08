@@ -17,7 +17,8 @@ class Settings():
             self.settings_file = Path(settings_file)
 
         # Isilon Server Settings and Credentials
-        self.hostname = ""
+        self.ip = ""
+        self.name = ""
         self.username = ""
         self.password = ""
         self.port = ""
